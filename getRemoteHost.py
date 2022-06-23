@@ -1,17 +1,33 @@
+import pdb
+
 import requests
 from lxml import etree
 
 
-def getRemoteHost():
-    url = 'https://github.com.ipaddress.com/'
+def getRemoteHost(_url):
+    # 原版的URL
+    #url = 'https://' + _url + '.ipaddress.com/'
+    # 新版的URL更改了
+    url = 'https://ipaddress.com/website/' + _url
+    print(url)
     headers = {
-        'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36 Edg/91.0.864.59'
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36 Edg/91.0.864.59'
     }
-    page_text = requests.get(url=url, headers=headers).text
-    # print(page_text)
-    tree = etree.HTML(page_text)
-    li_list = tree.xpath('/html/body/div/main/section[1]/table/tr[6]/td/ul/li/text()')
+    try:
+        page_text = requests.get(url=url, headers=headers).text
+        # print(page_text)
+        tree = etree.HTML(page_text)
+        # li_list = tree.xpath('/html/body/div[1]/main/section[1]/table/tbody/tr[7]/td/ul')
+        li_list = tree.xpath('/html/body/div[1]/main/section[1]/table/tbody/tr[7]/th')
+        # pdb.set_trace()
+        print(li_list)
+        # / html / body / div[1] / main / section[1] / table / tbody / tr[7] / td / ul / li
+        # / html / body / div[1] / main / section[1] / table / tbody / tr[7] / td / ul / li / text()
+        print(li_list[0])
+        print('over')
+        return li_list[0]
+    except:
+        return "该网站无法解析"
 
-    # print(li_list[0])
-    # print('over')
-    return li_list[0]
+s = getRemoteHost('github.com')
+print(s)
