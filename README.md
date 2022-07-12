@@ -8,6 +8,9 @@
 - getRemoteHost.py 获取当前的正确的IP
 - getLocalHost.py 获取本地的IP，并且实现更新查询等功能
 - gui 利用tk库进行封装
+## 效果展示
+![](./img/效果0.png)
+![](./img/效果0.png)
 ## 功能扩展
 - 封装成一个exe文件，直接打开运行即可
 - 查询不同的网站，如google.com,同样可以进行更新IP
