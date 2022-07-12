@@ -1,4 +1,13 @@
 # githubIpUpdate
-github的ip经常改变，采用爬虫加更改本地host的方式，使得能一键更改映射的IP，能够访问GitHub。
-
-并加上了更改域名的框，可以自己更改自己的域名，并进行更改。
+## 问题背景
+如果不使用梯子的话，访问GitHub经常会超时。背后的原因是GitHub的IP地址经常改变，而本地的hosts文件没有改变，无法建立合适的DNS映射。
+## 解决方案
+首先根据网站https://ipaddress.com/website/github.com, 可以查询到当前的网站的IP。
+然后根据C:/Windows/System32/drivers/etc/hosts，得到本地中的DNS的映射
+## 代码结构
+- getRemoteHost.py 获取当前的正确的IP
+- getLocalHost.py 获取本地的IP，并且实现更新查询等功能
+- gui 利用tk库进行封装
+## 功能扩展
+- 封装成一个exe文件，直接打开运行即可
+- 查询不同的网站，如google.com,同样可以进行更新IP
