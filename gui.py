@@ -7,6 +7,7 @@ class App:
     flag = False
 
     def __init__(self, master):
+        self.localIPHint = None
         self.remoteIPValue = getRemoteHost("github.com")
         self.localIPValue = getHost('C:/Windows/System32/drivers/etc/hosts', 'github.com')
         self.remoteIPVar = tk.StringVar()
